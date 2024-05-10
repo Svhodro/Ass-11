@@ -11,6 +11,7 @@ import Private from './page/Private/Private'
 import Home from './Home/Home'
 import Login from './page/Login/Login'
 import Register from './page/Register/Register'
+import Layout from './page/Layout/Layout'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   return (
     <UserContextProvider>
       <Routes>
+        <Route path='/' element={<Layout/>} >
         <Route path="/" element={<Home />} />
         <Route path="/private" element={<Private />}>
         <Route path="addbookpage" element={<AddBookPage />} />    
@@ -28,8 +30,9 @@ function App() {
         <Route path="catagore" element={<Catagore />} />         
         </Route>      
         <Route path="*" element={<Nopage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        </Route>
       </Routes>
     </UserContextProvider>
   )

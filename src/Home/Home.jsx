@@ -21,9 +21,10 @@ function Home() {
     },
     // More people...
   ]
+
+
   return (
-    <div >
-      <Nav />
+    <div >   
       <Hero />
       <Homecetagore />
       {/* extra section 1 */}

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import UserContext from '../../Context/UserContext'
 import { ImSun } from "react-icons/im";
 import { BsCloudMoon } from "react-icons/bs";
 
 function Nav() {
-    const { user } = useContext(UserContext)
+     const navigate=useNavigate()
+    const { user, setuser } = useContext(UserContext)
     const [theme, setTheme] = React.useState('light');
     const toggleTheme = () => {
         setTheme(theme === 'night' ? 'light' : 'night');
@@ -13,6 +14,14 @@ function Nav() {
     useEffect(() => {
         document.querySelector('html').setAttribute('data-theme', theme);
     }, [theme]);
+
+    const handlelogin=()=>{
+            navigate('/login')
+    }
+    const handlelogout=()=>{        
+        setuser(false)
+
+}
 
     return (
         <div className='px-4'>
@@ -27,7 +36,7 @@ function Nav() {
                             <li><Link to='/private/addbookpage'>AddBook</Link></li>
                             <li><Link to='/private/allpage'>AllBooks</Link></li>
                             <li><Link to='/private/borrowedpage'>BorrowedBooks</Link></li>
-                            <li>{user ? <button className='btn-sm btn md:btn'>LogOut</button> : <button className='btn-sm btn md:btn'>Login</button>}</li>
+                            <li>{user ? <button className='btn-sm btn md:btn' onClick={handlelogout}>LogOut</button> : <button className='btn-sm btn md:btn'onClick={handlelogin} >Login</button>}</li>
 
                         </ul>
                     </div>
@@ -56,13 +65,13 @@ function Nav() {
                         <BsCloudMoon className="swap-on fill-current w-6 h-6" />
                     </label>
                     {user ? <div className='flex justify-center items-center gap-2'>
-                        <button className=' hidden lg:flex lg:btn'>LogOut</button>
+                        <button className=' hidden lg:flex lg:btn' onClick={handlelogout}>LogOut</button>
                         <div className="avatar pl-2">
                             <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                    </div> : <button className=' btn-sm btn md:btn'>Login</button>}
+                    </div> : <button className=' btn-sm btn md:btn'onClick={handlelogin} >Login</button>}
 
 
 

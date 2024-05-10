@@ -41,6 +41,7 @@ function Login() {
     
             // The signed-in user info.
             const user = result.user;
+            setuser(true)
             console.log(user)
             // IdP data available using getAdditionalUserInfo(result)
             // ...

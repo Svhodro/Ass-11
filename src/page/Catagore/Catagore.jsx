@@ -1,10 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../../Context/UserContext'
 import axios from 'axios'
+import Rating from 'react-rating'
+import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
+
 function Catagore() {
-  const { catagory } = useContext(UserContext)
+  const { catagory, details, setdetails } = useContext(UserContext)
   const [data, setdata] = useState([])
   const [loading, setloading] = useState(true)
+  const navigate = useNavigate()
   useEffect(() => {
     axios.get('https://ass-11-server-ten.vercel.app/book')
       .then(data => {
@@ -12,6 +19,7 @@ function Catagore() {
         setloading(false)
       })
   }, [catagory])
+
 
   return (
     <div className='w-full'>
@@ -21,20 +29,31 @@ function Catagore() {
         <span className="loading loading-ring loading-lg"></span>
       </div>}
       <div className='w-full flex justify-center items-center flex-wrap gap-4 p-6'>
-      {data.map((res) => {
-        if (res.category == catagory) {
-          return <div className="card w-80 bg-base-100 shadow-xl rounded hover:rounded-lg h-[500px] ">
-                  <div className="card-body">
-                    <h2 className="card-title">{res.name}</h2>
-                    <p>Author:{res.author}</p>
-                    <p>Category:{res.category}</p>
-                    <p>Rateing:{res.rateing}</p>
-                    <button className='btn'>Details</button>
-                   </div>
-                  <figure><img src={res.img} alt="Shoes" className='object-cover'/></ figure>
-                 </div>
-        }
-      })}
+        {data.map((res) => {
+          const handeldetails = () => {
+            navigate('/private/bookdetails')
+            setdetails(res)
+            console.log(details)
+          }
+          if (res.category == catagory) {
+            return <div className="card w-80 bg-base-100 shadow-xl rounded hover:rounded-lg h-[500px] ">
+              <div className="card-body">
+                <h2 className="card-title">{res.name}</h2>
+                <p>Author:{res.author}</p>
+                <p>Category:{res.category}</p>
+                <p><Rating
+                  initialRating={res.rateing}
+                  readonly
+                  emptySymbol={<CiStar />}
+                  placeholderSymbol={<FaStar />}
+                  fullSymbol={<FaStar />}
+                /></p>
+                <button className='btn btn-warning' onClick={handeldetails}>Details</button>
+              </div>
+              <figure><img src={res.img} alt="Shoes" className='object-cover' /></ figure>
+            </div>
+          }
+        })}
       </div>
     </div>
   )

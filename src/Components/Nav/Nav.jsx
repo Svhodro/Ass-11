@@ -5,23 +5,39 @@ import { ImSun } from "react-icons/im";
 import { BsCloudMoon } from "react-icons/bs";
 
 function Nav() {
-     const navigate=useNavigate()
-    const { user, setuser } = useContext(UserContext)
+ 
+
+    const navigate = useNavigate()
+    const { user, setuser, data, setData } = useContext(UserContext)
     const [theme, setTheme] = React.useState('light');
+
     const toggleTheme = () => {
         setTheme(theme === 'night' ? 'light' : 'night');
     };
+
     useEffect(() => {
         document.querySelector('html').setAttribute('data-theme', theme);
     }, [theme]);
 
-    const handlelogin=()=>{
-            navigate('/login')
+    const handlelogin = () => {
+        navigate('/login')
     }
-    const handlelogout=()=>{        
+    const handlelogout = () => {
         setuser(false)
-
-}
+        localStorage.clear()
+    }
+    useEffect(() => {
+        let local = localStorage.getItem("dataKey")
+        let data=JSON.parse(local)
+               
+        if (data?.email) {
+            setuser(true)
+            setData(data)
+        } else {
+            setuser(false)
+            setData(data)
+        }
+    },[])
 
     return (
         <div className='px-4'>
@@ -36,7 +52,7 @@ function Nav() {
                             <li><Link to='/private/addbookpage'>AddBook</Link></li>
                             <li><Link to='/private/allpage'>AllBooks</Link></li>
                             <li><Link to='/private/borrowedpage'>BorrowedBooks</Link></li>
-                            <li>{user ? <button className='btn-sm btn md:btn' onClick={handlelogout}>LogOut</button> : <button className='btn-sm btn md:btn'onClick={handlelogin} >Login</button>}</li>
+                            <li>{user ? <button className='btn-sm btn md:btn' onClick={handlelogout}>LogOut</button> : <button className='btn-sm btn md:btn' onClick={handlelogin} >Login</button>}</li>
 
                         </ul>
                     </div>
@@ -66,12 +82,16 @@ function Nav() {
                     </label>
                     {user ? <div className='flex justify-center items-center gap-2'>
                         <button className=' hidden lg:flex lg:btn' onClick={handlelogout}>LogOut</button>
+                        {/* tooltip */}
+                        <div className="tooltip tooltip-bottom" data-tip={data?.displayName}>
                         <div className="avatar pl-2">
                             <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img src={data?.photoURL} alt='Profile-img' />
                             </div>
                         </div>
-                    </div> : <button className=' btn-sm btn md:btn'onClick={handlelogin} >Login</button>}
+                             </div>
+                       
+                    </div> : <button className=' btn-sm btn md:btn' onClick={handlelogin} >Login</button>}
 
 
 

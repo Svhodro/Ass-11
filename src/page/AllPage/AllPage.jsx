@@ -113,7 +113,7 @@ function AllPage() {
                          </td>
                          </td>
                          <th>
-                           <button className="btn btn-ghost btn-xs">Update</button>
+                           <button className="btn btn-warning">Update</button>
                          </th>
                        </tr>     
                      </tbody>
@@ -169,7 +169,7 @@ function AllPage() {
                        </td>
                        </td>
                        <th>
-                         <button className="btn btn-ghost btn-xs">Update</button>
+                         <button className="btn btn-warning">Update</button>
                        </th>
                      </tr>     
                    </tbody>

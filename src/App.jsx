@@ -9,6 +9,8 @@ import Catagore from './page/Catagore/Catagore'
 import Nopage from './page/Nopage/Nopage'
 import Private from './page/Private/Private'
 import Home from './Home/Home'
+import Login from './page/Login/Login'
+import Register from './page/Register/Register'
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Route path="catagore" element={<Catagore />} />         
         </Route>      
         <Route path="*" element={<Nopage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </UserContextProvider>
   )

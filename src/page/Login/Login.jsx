@@ -14,6 +14,7 @@ function Login() {
     //toast
 
     const notify = () => toast("Login Sucssesfull!");
+    
     const { setuser, setData, data } = useContext(UserContext)
     const HandleLogin = async (e) => {
         e.preventDefault();
@@ -39,6 +40,7 @@ function Login() {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                toast(errorMessage)
 
             });
     }

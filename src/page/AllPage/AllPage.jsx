@@ -34,6 +34,7 @@ function AllPage() {
     setGrid(!grid)
 
   }
+ 
   return (
     <div className='w-full '>
 

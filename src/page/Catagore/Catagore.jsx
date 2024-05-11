@@ -32,8 +32,7 @@ function Catagore() {
         {data.map((res) => {
           const handeldetails = () => {
             navigate('/private/bookdetails')
-            setdetails(res)
-            console.log(details)
+            setdetails(res)        
           }
           if (res.category == catagory) {
             return <div className="card w-80 bg-base-100 shadow-xl rounded hover:rounded-lg h-[500px] ">

@@ -12,6 +12,7 @@ import Home from './Home/Home'
 import Login from './page/Login/Login'
 import Register from './page/Register/Register'
 import Layout from './page/Layout/Layout'
+import Update from './page/Update/Update'
 
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
         <Route path="allpage" element={<AllPage />} />    
         <Route path="bookdetails" element={<Bookdetails />} />  
         <Route path="borrowedpage" element={<BorrowedPage />} />  
-        <Route path="catagore" element={<Catagore />} />         
+        <Route path="catagore" element={<Catagore />} />       
+        <Route path="update" element={<Update />} />      
         </Route>      
         <Route path="*" element={<Nopage />} />
         <Route path="/login" element={<Login />} />

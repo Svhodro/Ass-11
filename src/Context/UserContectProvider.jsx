@@ -9,9 +9,10 @@ const UserContextProvider = ({ children }) => {
     const [catagory,setCategory]=useState("")
     const [data, setData] = useState([])
     const [details, setdetails] = useState([])
+    const [update, setupdate] = useState()
     
     return (
-        <UserContext.Provider value={{register,setRegister,cart, setCart,user, setuser,catagory,setCategory,data, setData,details, setdetails}}>
+        <UserContext.Provider value={{register,setRegister,cart, setCart,user, setuser,catagory,setCategory,data, setData,details, setdetails,update, setupdate}}>
             {children}
         </UserContext.Provider>
     )

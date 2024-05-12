@@ -1,12 +1,16 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext,useEffect, useState } from 'react'
 import { FiAlignJustify } from "react-icons/fi";
 import { FiGrid } from "react-icons/fi";
 import Rating from 'react-rating'
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import UserContext from '../../Context/UserContext';
+
 
 function AllPage() {
+  const {update, setupdate}=useContext(UserContext)
   const [data, setData] = useState([])
   const [grid, setGrid] = useState(true)
   const [loading, setloading] = useState(true)
@@ -19,7 +23,9 @@ function AllPage() {
   })
 
   const [ShoeAvalible, setShowAvalible] = useState(false)
+const handleupdate=()=>{
 
+}
   const handleshort = () => {
     setShowAvalible(true)
   }
@@ -34,7 +40,7 @@ function AllPage() {
     setGrid(!grid)
 
   }
- 
+
   return (
     <div className='w-full '>
 
@@ -72,6 +78,10 @@ function AllPage() {
       <div className='w-full p-4 flex justify-center items-center'>
         <div className='w-5/6 flex justify-center items-center p-6 flex-wrap gap-4'>
           {ShoeAvalible ? data.map((res) => {
+            const handleupdate=()=>{
+              setupdate(res._id)
+              
+            }
             if (res.quantity > 0) {
               if (grid == true) {
                 return <div className="card card-compact w-72  h-[500px] bg-base-100 shadow-xl">
@@ -88,7 +98,7 @@ function AllPage() {
                       fullSymbol={<FaStar />}
                     /></p>
                     <div className="card-actions justify-end">
-                      <button className="btn btn-primary">Update</button>
+                      <button className="btn btn-primary" onClick={handleupdate}><Link to='/private/update'>Update</Link></button>
                     </div>
                   </div>
                 </div>
@@ -129,7 +139,7 @@ function AllPage() {
                           </td>
                         </td>
                         <th>
-                          <button className="btn btn-warning">Update</button>
+                          <button className="btn btn-warning" onClick={handleupdate}><Link to='/private/update' >Update</Link></button>
                         </th>
                       </tr>
                     </tbody>
@@ -141,9 +151,12 @@ function AllPage() {
             }
 
           }) : data.map((res) => {
+            const handleupdate=()=>{
+              setupdate(res._id)             
+            }
             if (grid == true) {
-              return <div className="card card-compact w-72  h-[500px] bg-base-100 shadow-xl">
-                <figure><img src={res.img} alt="Shoes" className='object-contain' /></figure>
+              return <div className="card card-compact w-72 h-[500px] bg-base-100 shadow-xl" >
+                <figure><img src={res.img} alt="Shoes" className='object-contain'/></figure>
                 <div className="card-body">
                   <h2 className="card-title">{res.name}</h2>
                   <p>Category: {res.category}</p>
@@ -156,7 +169,7 @@ function AllPage() {
                     fullSymbol={<FaStar />}
                   /></p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Update</button>
+                    <button className="btn btn-primary"><Link to='/private/update'onClick={handleupdate}>Update</Link></button>
                   </div>
                 </div>
               </div>
@@ -197,7 +210,7 @@ function AllPage() {
                         </td>
                       </td>
                       <th>
-                        <button className="btn btn-warning">Update</button>
+                        <button className="btn btn-warning"><Link to='/private/update' onClick={handleupdate}>Update</Link></button>
                       </th>
                     </tr>
                   </tbody>

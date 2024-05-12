@@ -25,33 +25,34 @@ function Bookdetails() {
     const currentDate = new Date().toLocaleDateString();
     
   BorrowBooks.map(res=>{
-          
-          if (res.useremail==email&&res.name==details.name) {
-            setgive(false)            
+          console.log(res.name,details.name)
+          if (res.useremail==email && res.name==details.name) {
+            setgive(false)       
+            
           }})
 
   if (give) {
     
-    axios({
-      method: 'post',
-      url: 'https://ass-11-server-ten.vercel.app/addborrow',
-      data: {
+    // axios({
+    //   method: 'post',
+    //   url: 'https://ass-11-server-ten.vercel.app/addborrow',
+    //   data: {
 
-        retundate: date,
-        useremail: email,
-        borrowdate: currentDate,
-        img:details.img,
-        name:details.name,        
-        category:details.category,
-        
+    //     retundate: date,
+    //     useremail: email,
+    //     borrowdate: currentDate,
+    //     img:details.img,
+    //     name:details.name,        
+    //     category:details.category,
+    //     quantity:details.quantity-1       
 
-      }
-    });
+    //   }
+    // });
 
     const curentqantity = details.quantity
     const updatequantity = curentqantity - 1
 
-    axios.put('http://localhost:5000/borrowbook/' + details._id, {
+    axios.put('https://ass-11-server-ten.vercel.app/borrowbook/' + details._id, {
       quantity: updatequantity
     });
   }else{

@@ -55,7 +55,7 @@ function BorrowedPage() {
                 <p>Category : {res.category}</p>
                 <p>BorrowDate : {res.retundate}</p>
                 <div className="card-actions justify-center py-6">
-                  <button className="btn btn-primary" onClick={handlereturn}>Retune</button>
+                  <button className="btn btn-primary">Retune</button>
                 </div>
               </div>
             </div>

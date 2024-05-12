@@ -26,27 +26,26 @@ function BorrowedPage() {
       </div> : <div className='hidden' >
         <span className="loading loading-ring loading-lg"></span>
       </div>}
-      {
-        BorrowBooks.map(res => {
+      { BorrowBooks.map(res => {
           const id = res._id
           const quantity=res.quantity+1
           const curentemail = data.email
-          const handlereturn = async () => {
-            //delet the borrow book data
-            try {
-              const res = await axios.delete('/api/products/delete', { data: { id } });
-              if (res.data.success) {
-                alert(res.data.msg);
-              }
-            } catch (err) {
-              console.error(err);
-            }
-            //update thebook quantity
-            axios.put('http://localhost:5000/updatequntity', {
-              Bookname:res.name,
-              update:quantity
-            });
-          }
+          // const handlereturn = async () => {
+          //   //delet the borrow book data
+          //   try {
+          //     const res = await axios.delete('http://localhost:5000/delete', { data: { id } });
+          //     if (res.data.success) {
+          //       alert(res.data.msg);
+          //     }
+          //   } catch (err) {
+          //     console.error(err);
+          //   }
+          //   //update thebook quantity
+          //   axios.put('http://localhost:5000/updatequntity', {
+          //     Bookname:res.name,
+          //     update:quantity
+          //   });
+          // }
 
           if (res.useremail == curentemail) {
             return <div className="card card-compact w-72  h-[500px] bg-base-100 shadow-xl">

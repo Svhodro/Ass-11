@@ -33,21 +33,21 @@ function Bookdetails() {
 
   if (give) {
     
-    // axios({
-    //   method: 'post',
-    //   url: 'https://ass-11-server-ten.vercel.app/addborrow',
-    //   data: {
+    axios({
+      method: 'post',
+      url: 'https://ass-11-server-ten.vercel.app/addborrow',
+      data: {
 
-    //     retundate: date,
-    //     useremail: email,
-    //     borrowdate: currentDate,
-    //     img:details.img,
-    //     name:details.name,        
-    //     category:details.category,
-    //     quantity:details.quantity-1       
+        retundate: date,
+        useremail: email,
+        borrowdate: currentDate,
+        img:details.img,
+        name:details.name,        
+        category:details.category,
+        quantity:details.quantity-1       
 
-    //   }
-    // });
+      }
+    });
 
     const curentqantity = details.quantity
     const updatequantity = curentqantity - 1

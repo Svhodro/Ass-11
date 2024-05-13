@@ -8,6 +8,7 @@ function Bookdetails() {
   const [BorrowBooks, setBorroowBooks] = useState([])  
   const [give, setgive] = useState(true)  
   const notify = () => toast("You Have Already Borrw This Book");
+  const done=()=>toast("Book Sucssesfully Borrow")
   const { details, data } = useContext(UserContext)
 
   // console.log(data)
@@ -47,7 +48,9 @@ function Bookdetails() {
         quantity:details.quantity-1       
 
       }
-    });
+    }).then(res=>{
+      done()
+    })
 
     const curentqantity = details.quantity
     const updatequantity = curentqantity - 1

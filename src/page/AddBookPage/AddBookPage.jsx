@@ -19,9 +19,7 @@ function AddBookPage() {
     const curentrating=e.target.rate.value
     if (curentrating<=5) {
       setrating(curentrating)
-    } else {
-      rateeing()
-    }
+    
     
     axios.post('https://ass-11-server-ten.vercel.app/AddBookData', {
             
@@ -38,7 +36,9 @@ function AddBookPage() {
          notify()
          console.log(res.data)
     })
-
+  } else {
+    rateeing()
+  }
     
   }
   return (

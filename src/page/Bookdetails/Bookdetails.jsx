@@ -48,8 +48,6 @@ function Bookdetails() {
         quantity:details.quantity-1       
 
       }
-    }).then(res=>{
-      done()
     })
 
     const curentqantity = details.quantity
@@ -58,6 +56,7 @@ function Bookdetails() {
     axios.put('https://ass-11-server-ten.vercel.app/borrowbook/' + details._id, {
       quantity: updatequantity
     });
+    done()
   }else{
      notify()
   }

@@ -24,6 +24,7 @@ function Nav() {
     }
     const handlelogout = () => {
         setuser(false)
+        navigate('/')
         localStorage.clear()
     }
     useEffect(() => {

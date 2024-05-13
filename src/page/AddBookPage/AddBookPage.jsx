@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function AddBookPage() {
   const notify = () => toast("Add Sucssesfull!");
+  const rateeing= () =>toast("only you can give 1-to-5 star ")
+  const [rating,setrating]=useState()
   const handleAdd=(e)=>{
     e.preventDefault();
     const img = e.target.img.value;
@@ -14,7 +16,13 @@ function AddBookPage() {
     const des = e.target.des.value;
     const text = e.target.text.value;
     const quantity=e.target.quantity.value
-    const rating=e.target.rate.value
+    const curentrating=e.target.rate.value
+    if (curentrating<=5) {
+      setrating(curentrating)
+    } else {
+      rateeing()
+    }
+    
     axios.post('https://ass-11-server-ten.vercel.app/AddBookData', {
             
                   img:img,

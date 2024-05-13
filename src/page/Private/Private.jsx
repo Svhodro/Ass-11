@@ -10,7 +10,7 @@ function Private() {
       } else {     
         useEffect(()=>{
            if(user===false){
-            navigate('/')
+            navigate('/login')
            }
         }) 
           

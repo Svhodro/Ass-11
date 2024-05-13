@@ -22,45 +22,38 @@ function Update() {
     setcategore('religion')
   }
   const notify = () => toast("You Have Sucssesfully Update The Book");
-  const handleupdate = async (e) => {
+  const handleupdate = async(e) => {
     e.preventDefault();
-    const id = update
+    const id =update
     const img = e.target.url.value;
     const name = e.target.bookname.value;
     const author = e.target.authorname.value;
     const category = categore
     const rateing = e.target.rate.value
-    const updatedata = {
-      Bookid: id,
-      img: img,
-      name: name,
-      author: author,
-      category: category,
-      rateing: rateing
+    const updatedata={
+      img:img,
+       name:name,
+       author:author,
+       category:category,
+       rateing:rateing
     }
     // console.log(img,name,author,category,rating,id)
 
-    // problem ta akhane
-    try {
-      const putRequest = {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          mode: 'no-cors',
-        },
-        body: JSON.stringify(updatedata),
-      };
-      await fetch('https://ass-11-server-ten.vercel.app/Update',putRequest)
 
+   try {
+    await axios.put(`https://ass-11-server-ten.vercel.app/Update/${id}`,updatedata)
+    .then(res=>{
+         notify()
+    })
+    // Handle success (e.g., show a success message)
 
-      // Handle success (e.g., show a success message)
+  } catch (error) {
+    // Handle error (e.g., show an error message)
 
-    } catch (error) {
-      // Handle error (e.g., show an error message)
-
-      console.log(error.message)
-    }
+    console.log(error.message)
   }
+  }
+
 
 
   return (
